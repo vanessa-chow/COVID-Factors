@@ -1,4 +1,4 @@
-Station Name,Year,Month,Day,Mean Temp (°C),Total Precip (mm),Avg Humidity,Avg Wind Speed,Daylight (hrs),Mean UV,Cases,Cumulative Cases
+Station Name,Year,Month,Day,Mean Temp (C),Total Precip (mm),Avg Rel Hum (%),Avg Wind Spd (km/h),Daylight (hrs),Mean UV,Cases,Cumulative Cases
 TORONTO INTL A,2020,1,25,2.6,8.6,95.29,18.5,9.612222222,1,0,0
 TORONTO INTL A,2020,1,26,2,1,88.54,16.21,9.649444444,1,0,0
 TORONTO INTL A,2020,1,27,0.6,0,80.21,16.08,9.686944444,1,0,0
