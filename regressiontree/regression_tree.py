@@ -6,9 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import export_graphviz
 from sklearn import metrics
+import statsmodels.api as sm
 
-# Import the Calgary Factors Dataset
-calgarydata = pd.read_csv(r'/datasets/Calgary_Factors.csv')
 
 
 class RegressionTree:
@@ -23,7 +22,7 @@ class RegressionTree:
         self.DtReg = None
 
     def regression_tree(self):
-        self.DtReg = DecisionTreeRegressor(max_depth=10, min_samples_split=5, min_samples_leaf=1, random_state=0)
+        self.set_DtReg(DecisionTreeRegressor(max_depth=10, min_samples_split=5, min_samples_leaf=1, random_state=0))
         self.DtReg.fit(self.x_train, self.y_train)
         y_predict_dtr = self.DtReg.predict(self.x_test)
         r_square = metrics.r2_score(self.y_test, y_predict_dtr)
@@ -48,11 +47,38 @@ class RegressionTree:
         export_graphviz(self.DtReg, out_file='calgarydtregression.dot', feature_names=["Mean Temp (C)",
                         "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)", "Daylight (hrs)", "Mean UV"])
 
-    # def getDtReg(self):
-    #     print(self.DtReg)
-    #
-    # def getx_train(self):
-    #     print(self.x_train)
+    def get_summary(self):
+        X2 = sm.add_constant(self.x_test)
+        est = sm.OLS(self.y_test, X2)
+        est2 = est.fit()
+        print(est2.summary())
+
+    def get_data(self):
+        return self.data
+
+    def get_x(self):
+        return self.x
+
+    def get_y(self):
+        return self.y
+
+    def get_x_train(self):
+        return self.x_train
+
+    def get_x_test(self):
+        return self.x_test
+
+    def get_y_train(self):
+        return self.y_train
+
+    def get_y_test(self):
+        return self.y_test
+
+    def get_DtReg(self):
+        return self.DtReg
+
+    def set_DtReg(self, DtReg):
+        self.DtReg = DtReg
 
     # def regression_tree_plt(self):
     #     X_val = np.arange(min(self.x_train), max(self.x_train))
@@ -74,8 +100,3 @@ class RegressionTree:
     #
     #     plt.show()
 
-
-r1 = RegressionTree(calgarydata)
-r1.regression_tree()
-# r1.get_viz()
-r1.get_feature_importance()
