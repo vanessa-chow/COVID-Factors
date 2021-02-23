@@ -8,4 +8,4 @@ PEEL_DATA = pd.read_csv(r'C:\Chung\URO\covid-factors\datasets\Edmonton_Factors.c
 peel_dtr = RegressionTree(PEEL_DATA)
 peel_dtr.regression_tree()
 peel_dtr.get_feature_importance()
-peel_dtr.get_viz()
+peel_dtr.get_viz('peel_dtr.dot')

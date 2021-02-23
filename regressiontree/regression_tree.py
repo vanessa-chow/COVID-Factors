@@ -40,11 +40,11 @@ class RegressionTree:
         plt.bar([x for x in range(len(importance))], importance)
         plt.show()
 
-    def get_viz(self):
+    def get_viz(self, out_file):
         # Store the decision tree in a tree.dot file to visualize plot
         # Visualize on webgraphviz.com by cping related data from dtregression.dot file
 
-        export_graphviz(self.DtReg, out_file='calgarydtregression.dot', feature_names=["Mean Temp (C)",
+        export_graphviz(self.DtReg, out_file=out_file, feature_names=["Mean Temp (C)",
                         "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)", "Daylight (hrs)", "Mean UV"])
 
     def get_summary(self):
