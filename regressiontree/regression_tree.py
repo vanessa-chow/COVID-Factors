@@ -26,7 +26,7 @@ class RegressionTree:
         self.DtReg.fit(self.x_train, self.y_train)
         y_predict_dtr = self.DtReg.predict(self.x_test)
         r_square = metrics.r2_score(self.y_test, y_predict_dtr)
-        print(r_square)
+        print("R-Squared: ", r_square)
 
     def get_feature_importance(self):
         # get importance
