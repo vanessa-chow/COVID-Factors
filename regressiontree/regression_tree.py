@@ -14,7 +14,7 @@ class RegressionTree:
 
     def __init__(self, data):
         self.data = data
-        self.x = data[["Mean Temp (C)", "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)", "Daylight (hrs)",
+        self.x = data[["Mean Temp (C)", "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)",
                        "Mean UV"]]
         self.y = data[["Cases"]]
         self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x, self.y, test_size=0.3,
@@ -40,12 +40,18 @@ class RegressionTree:
         plt.bar([x for x in range(len(importance))], importance)
         plt.show()
 
+        # print(model.feature_importances_)  # use inbuilt class feature_importances of tree based classifiers
+        # # plot graph of feature importances for better visualization
+        # feat_importances = pd.Series(model.feature_importances_, index=X.columns)
+        # feat_importances.nlargest(10).plot(kind='barh')
+        # plt.show()
+
     def get_viz(self, out_file):
         # Store the decision tree in a tree.dot file to visualize plot
         # Visualize on webgraphviz.com by cping related data from dtregression.dot file
 
         export_graphviz(self.DtReg, out_file=out_file, feature_names=["Mean Temp (C)",
-                        "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)", "Daylight (hrs)", "Mean UV"])
+                        "Total Precip (mm)", "Avg Rel Hum (%)", "Avg Wind Spd (km/h)", "Mean UV"])
 
     def get_summary(self):
         X2 = sm.add_constant(self.x_test)
