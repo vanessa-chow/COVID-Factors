@@ -28,16 +28,20 @@ class RegressionTree:
         r_square = metrics.r2_score(self.y_test, y_predict_dtr)
         print("R-Squared: ", r_square)
 
-    def get_feature_importance(self):
+    def get_feature_importance(self, name):
         # get importance
         importance = self.DtReg.feature_importances_
 
         # summarize feature importance
         for i, v in enumerate(importance):
-            print('Feature: %0d, Score: %.5f' % (i,v))
+            print('Feature: %s Score: %.5f' % (i, v))
 
         # plot feature importance
+        plt.figure(figsize=(10, 5))
+        plt.title(name + " Feature Importances")
         plt.bar([x for x in range(len(importance))], importance)
+        plt.xticks(range(self.x.shape[1]), ["Mean Temp (C)", "Total Precip (mm)", "Avg Rel Hum (%)",
+                                            "Avg Wind Spd (km/h)", "Mean UV"])
         plt.show()
 
         # print(model.feature_importances_)  # use inbuilt class feature_importances of tree based classifiers

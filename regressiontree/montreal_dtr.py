@@ -7,5 +7,5 @@ MONTREAL_DATA = pd.read_csv(r'C:\Chung\URO\covid-factors\datasets\Montreal_Facto
 
 montreal_dtr = RegressionTree(MONTREAL_DATA)
 montreal_dtr.regression_tree()
-montreal_dtr.get_feature_importance()
+montreal_dtr.get_feature_importance("Montreal")
 montreal_dtr.get_viz('montreal_dtr.dot')
